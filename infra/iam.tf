@@ -25,8 +25,8 @@ resource "aws_iam_role_policy" "lambda_policy" {
     Statement = [
       # Permission to READ from the Source Bucket
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "s3:GetObject",
           "s3:ListBucket"
         ]
@@ -37,8 +37,8 @@ resource "aws_iam_role_policy" "lambda_policy" {
       },
       # Permission to WRITE to the Processed Bucket
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "s3:PutObject"
         ]
         Resource = [
@@ -48,8 +48,8 @@ resource "aws_iam_role_policy" "lambda_policy" {
       },
       # Permission to write logs to CloudWatch (Crucial for debugging!)
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents"
@@ -58,8 +58,8 @@ resource "aws_iam_role_policy" "lambda_policy" {
       },
       # Permission to write metadata to DynamoDB
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "dynamodb:PutItem"
         ]
         Resource = "${aws_dynamodb_table.image_metadata.arn}"
