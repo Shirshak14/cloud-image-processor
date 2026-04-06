@@ -29,5 +29,5 @@ An event-driven AWS architecture that automatically resizes images upon upload. 
 ### Deployment
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/cloud-image-processor.git](https://github.com/YOUR_USERNAME/cloud-image-processor.git)
+   git clone [https://github.com/YOUR_USERNAME/cloud-image-processor.git](https://github.com/Shirshak14/cloud-image-processor.git)
    cd cloud-image-processor/infra
