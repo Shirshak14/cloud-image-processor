@@ -33,3 +33,51 @@ This system follows a **decoupled, serverless architecture**:
 ├── package/              # Deployment Artifacts
 │   └── handler.py        # Python Image Logic
 └── Readme.md             # Project Documentation
+```
+
+# 🚀 Deployment Guide
+
+## 📌 Prerequisites
+- AWS CLI configured (`aws configure`)
+- Terraform v1.0+
+- Python 3.9+
+
+## 📥 Step 1: Clone the Repository
+```bash
+git clone https://github.com/Shirshak14/cloud-image-processor.git
+cd cloud-image-processor/infra
+```
+## ⚙️ Step 2: Initialize & Plan
+```bash
+terraform init
+terraform plan
+```
+## 🚀 Step 3: Deploy to AWS
+```bash
+terraform apply -auto-approve
+```
+## 📈 Monitoring & Costs
+- **Infracost:** Estimated monthly cost is **$0.00** (within AWS Free Tier)  
+- **CloudWatch Logs:** Available in `/aws/lambda/ImageProcessor` for debugging  
+
+---
+
+## 🛡️ Security & Best Practices
+- **Least Privilege:** IAM roles restricted to required S3 and DynamoDB access  
+- **CI/CD Safety:** Terraform plan runs automatically before deployment  
+- **State Management:** `.gitignore` prevents `.tfstate` and sensitive files from being committed  
+
+---
+
+## 💼 Resume Bullet Points
+- Designed and deployed a **serverless image processing pipeline** using AWS services (S3, Lambda, DynamoDB)  
+- Implemented **Infrastructure as Code (IaC)** using Terraform for scalable and repeatable deployments  
+- Developed an **event-driven architecture** using S3 triggers and Lambda functions for real-time processing  
+- Integrated **CI/CD pipeline using GitHub Actions** to automate infrastructure validation  
+- Optimized cost using **AWS Free Tier and Infracost analysis** for zero-cost deployment  
+- Applied **IAM least privilege principles** to enhance system security and access control  
+
+---
+
+## 👨‍💻 Author
+Developed by **Shirshak**
