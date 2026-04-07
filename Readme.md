@@ -1,33 +1,75 @@
-# Serverless Image Processing Pipeline
+🚀 Serverless Image Processing Pipeline
+An automated, event-driven pipeline built with Terraform that resizes images in real-time. This project handles the full lifecycle of an image—from upload to thumbnail generation and metadata logging.
 
-An event-driven AWS architecture that automatically resizes images upon upload. This project demonstrates Infrastructure as Code (IaC) using Terraform, serverless computing with AWS Lambda, and metadata persistence with DynamoDB.
+🏗️ Architecture Overview
+This system follows a decoupled, serverless architecture:
 
-## 🏗️ Architecture
-1. **S3 Source Bucket**: User uploads a `.jpg` image.
-2. **S3 Event Notification**: Triggers the Lambda function.
-3. **AWS Lambda (Python)**: Resizes the image using the `Pillow` library.
-4. **S3 Processed Bucket**: Lambda saves the thumbnail version here.
-5. **DynamoDB**: Lambda logs image metadata (filename, size, timestamp).
-6. **CloudWatch**: Stores execution logs for debugging and monitoring.
+Trigger: User uploads a .jpg to the Source S3 Bucket.
 
+Compute: S3 triggers an AWS Lambda function via Event Notifications.
 
+Process: Lambda (Python/Pillow) fetches the image, generates a thumbnail, and uploads it to the Processed S3 Bucket.
 
-## 🛠️ Tech Stack
-- **Infrastructure:** Terraform (IaC)
-- **Cloud Provider:** AWS (S3, Lambda, DynamoDB, IAM, CloudWatch)
-- **Language:** Python 3.9+
-- **Libraries:** Pillow (Image Processing), Boto3 (AWS SDK)
-- **Cost Management:** Infracost
+Log: Metadata (Size, Type, Timestamp) is persisted in DynamoDB.
 
-## 🚀 Getting Started
+Observe: All execution logs and errors are streamed to Amazon CloudWatch.
 
-### Prerequisites
-- AWS CLI configured with appropriate permissions.
-- Terraform installed.
-- Python installed (for local packaging).
+🛠️ Tech Stack & DevOps Tools
+IaC: Terraform (Modular & Scalable)
 
-### Deployment
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/YOUR_USERNAME/cloud-image-processor.git](https://github.com/Shirshak14/cloud-image-processor.git)
-   cd cloud-image-processor/infra
+Cloud: AWS (S3, Lambda, DynamoDB, IAM)
+
+CI/CD: GitHub Actions (Automated terraform plan on every push)
+
+FinOps: Infracost (Pre-deployment cost estimation)
+
+Language: Python 3.9 (Boto3 & Pillow)
+
+📁 Project Structure
+Plaintext
+.
+├── .github/workflows/    # CI/CD Pipeline (GitHub Actions)
+├── infra/                # Terraform Configuration Files
+│   ├── main.tf           # Provider & Global Config
+│   ├── s3.tf             # Storage Buckets
+│   ├── lambda.tf         # Serverless Logic & Triggers
+│   └── iam.tf            # Security Roles & Policies
+├── package/              # Deployment Artifacts
+│   └── handler.py        # Python Image Logic
+└── Readme.md
+🚀 Deployment Guide
+Prerequisites
+AWS CLI configured (aws configure)
+
+Terraform v1.0+
+
+Python 3.9+
+
+Step-by-Step
+Clone the Repo
+
+Bash
+git clone https://github.com/Shirshak14/cloud-image-processor.git
+cd cloud-image-processor/infra
+Initialize & Plan
+
+Bash
+terraform init
+terraform plan
+Deploy to AWS
+
+Bash
+terraform apply -auto-approve
+📈 Monitoring & Costs
+Infracost: Total estimated monthly cost is $0.00 (within AWS Free Tier limits).
+
+CloudWatch Logs: Accessible via the /aws/lambda/ImageProcessor log group.
+
+🛡️ Security & Best Practices
+Least Privilege: IAM roles are scoped strictly to specific S3 buckets and DynamoDB tables.
+
+CI/CD Safety: Infrastructure changes are planned automatically in GitHub Actions before manual deployment.
+
+State Management: .gitignore ensures sensitive .tfstate files are never leaked.
+
+Created by Shirshak
